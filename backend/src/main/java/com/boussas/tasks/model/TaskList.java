@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table(name = "task_lists")
 public class TaskList {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String title;
