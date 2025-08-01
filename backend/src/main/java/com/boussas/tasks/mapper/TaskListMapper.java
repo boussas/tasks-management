@@ -1,4 +1,4 @@
-package com.boussas.tasks.mappers;
+package com.boussas.tasks.mapper;
 
 import com.boussas.tasks.model.TaskList;
 import com.boussas.tasks.model.dto.TaskListDTO;

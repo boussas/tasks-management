@@ -5,12 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 @Slf4j
 @Entity
@@ -37,13 +38,11 @@ public class Task {
     @JoinColumn(name = "task_list_id")
     private TaskList taskList;
 
-    @ManyToMany
-    @JoinTable(
-            name = "task_tags",
-            joinColumns = @JoinColumn(name = "task_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    private List<Tag> tags;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "task_tags", joinColumns = @JoinColumn(name = "task_id"))
+    @Column(name = "tag_name")
+    private Set<String> tags = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name = "created_by")

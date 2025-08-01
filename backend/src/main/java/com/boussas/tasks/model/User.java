@@ -5,11 +5,12 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder
 @Slf4j
 @Entity
@@ -29,15 +30,13 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Tag> tags;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_tags", joinColumns = @JoinColumn(name = "user_id"))
 
-    @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY)
-    private List<TaskList> taskLists;
+    @Column(name = "tag_name")
+    private Set<String> tags = new HashSet<>();
 
-    @OneToMany(mappedBy = "createdBy",fetch = FetchType.LAZY)
-    private List<Task> tasks;
+
 }

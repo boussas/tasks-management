@@ -1,37 +1,25 @@
-package com.boussas.tasks.mappers.impl;
+package com.boussas.tasks.mapper.impl;
 
-import com.boussas.tasks.mappers.TaskListMapper;
-import com.boussas.tasks.mappers.TaskMapper;
-import com.boussas.tasks.mappers.UserMapper;
+import com.boussas.tasks.mapper.TaskListMapper;
 import com.boussas.tasks.model.TaskList;
+import com.boussas.tasks.model.User;
 import com.boussas.tasks.model.dto.TaskListDTO;
+import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-
+@Service
 public class TaskListMapperImpl implements TaskListMapper {
-
-    private final TaskMapper taskMapper;
-    private final UserMapper userMapper;
-
-    public  TaskListMapperImpl(TaskMapper taskMapper, UserMapper userMapper) {
-        this.taskMapper = taskMapper;
-        this.userMapper = userMapper;
-    }
 
     @Override
     public TaskListDTO toDto(TaskList taskList) {
         if (taskList == null) return null;
-
         return TaskListDTO.builder()
                 .id(taskList.getId())
                 .title(taskList.getTitle())
                 .description(taskList.getDescription())
                 .createdAt(taskList.getCreatedAt())
                 .updatedAt(taskList.getUpdatedAt())
-                .owner(userMapper.toDto(taskList.getOwner()))
-                .tasks(taskList.getTasks() != null
-                        ? taskList.getTasks().stream().map(taskMapper::toDto).collect(Collectors.toList())
-                        : null)
+                .userId(taskList.getOwner() != null ? taskList.getOwner().getId() : null)
+
                 .build();
     }
 
@@ -45,10 +33,8 @@ public class TaskListMapperImpl implements TaskListMapper {
                 .description(dto.getDescription())
                 .createdAt(dto.getCreatedAt())
                 .updatedAt(dto.getUpdatedAt())
-                .owner(userMapper.fromDto(dto.getOwner()))
-                .tasks(dto.getTasks() != null
-                        ? dto.getTasks().stream().map(taskMapper::fromDto).collect(Collectors.toList())
-                        : null)
+                .owner(dto.getUserId() != null ? User.builder().id(dto.getUserId()).build() : null)
                 .build();
     }
+
 }

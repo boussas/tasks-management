@@ -20,6 +20,5 @@ public class TaskListDTO {
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private UserDTO owner;
-    private List<TaskDTO> tasks;
+    private Long userId;
 }

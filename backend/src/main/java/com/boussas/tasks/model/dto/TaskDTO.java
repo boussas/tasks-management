@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -24,8 +25,7 @@ public class TaskDTO {
     private LocalDate dueDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private TaskListDTO taskList;
-    private List<TagDTO> tags;
-    private UserDTO createdBy;
-
+    private UUID taskListId;
+    private Set<String> tags;
+    private Long userId;
 }

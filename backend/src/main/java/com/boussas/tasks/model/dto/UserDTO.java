@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -17,7 +18,5 @@ public class UserDTO {
     private String lastName;
     private String email;
     private LocalDateTime createdAt;
-    private List<TaskListDTO> taskLists;
-    private List<TagDTO> tags;
-    private List<TaskDTO> tasks;
+    private Set<String> tags;
 }
