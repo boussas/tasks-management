@@ -1,11 +1,18 @@
 package com.boussas.tasks.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
+@Slf4j
 @Entity
 @Table(name = "task_lists")
 public class TaskList {

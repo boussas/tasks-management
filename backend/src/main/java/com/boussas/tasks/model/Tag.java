@@ -1,9 +1,17 @@
 package com.boussas.tasks.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashSet;
 import java.util.Set;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
+@Slf4j
 @Entity
 @Table(name = "tags")
 public class Tag {
