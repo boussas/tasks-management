@@ -13,7 +13,7 @@ public class TaskListMapperImpl implements TaskListMapper {
     private final TaskMapper taskMapper;
     private final UserMapper userMapper;
 
-    public TaskListMapperImpl(TaskMapper taskMapper, UserMapper userMapper) {
+    public  TaskListMapperImpl(TaskMapper taskMapper, UserMapper userMapper) {
         this.taskMapper = taskMapper;
         this.userMapper = userMapper;
     }
